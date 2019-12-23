@@ -1,0 +1,1 @@
+{"version":3,"file":"main.css","sources":["main.scss","_reset.scss","_variables.scss","_mixins.scss","_components.scss","_layout.scss"],"sourcesContent":["// Importerar övriga scss-filer\n@import \"reset\";\n@import \"variables\";\n@import \"mixins\";\n@import \"components\";\n@import \"layout\";","","","","",""],"names":[],"mappings":""}
