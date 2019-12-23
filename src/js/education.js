@@ -53,7 +53,7 @@ function getEducation() {
                     + "<p>" + post.startdate + "</p>"
                     + "<p>" + post.enddate + "</p>"
                     // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<button onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera</button></div>";
+                    + "<button onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera # " + post.id + "</button></div>";
             })
             // Lägger in all text i diven output
             document.getElementById("output").innerHTML = output;
@@ -76,4 +76,39 @@ function deleteEducation(id) {
         .then((data) => getEducation())
         // Visar felmeddelanden
         .catch((err) => console.log(err))
+}
+
+// Uppdaterar en utbildnings-post
+function updateEducation() {
+    // Hämtar datat från fälten och lägger i variabler
+    let educationId = document.getElementById("educationId").value;
+    let updateHie = document.getElementById("updateHie").value;
+    let updateName = document.getElementById("updateName").value;
+    let updateCredits = document.getElementById("updateCredits").value;
+    let updateStartdate = document.getElementById("updateStartdate").value;
+    let updateEnddate = document.getElementById("updateEnddate").value;
+
+    // Skapar ett JSON-objekt av inmatat data
+    let updateEduJson = JSON.stringify({
+        "hie": updateHie,
+        "name": updateName,
+        "credits": updateCredits,
+        "startdate": updateStartdate,
+        "enddate": updateEnddate
+    });
+    // Skickar JSON-datat till URL:en
+    fetch(URL + "/" + educationId, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: updateEduJson
+    })
+        // Konverterar returnerad respons till JSON
+        .then((res) => res.json())
+        // Hämtar kurserna
+        .then((data) => getEducation())
+        // Plockar upp felmeddelanden
+        .catch((err) => console.log(err))
+
 }

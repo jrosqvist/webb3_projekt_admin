@@ -50,7 +50,7 @@ function getJobs() {
                     + "<p>" + post.startdate + "</p>"
                     + "<p>" + post.enddate + "</p>"
                     // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<button onclick ='deleteJob(this.id)' id =" + post.id + ">Radera</button></div>";
+                    + "<button onclick ='deleteJob(this.id)' id =" + post.id + ">Radera #" + post.id + "</button></div>";
             })
             // Lägger in all text i diven outputjobs
             document.getElementById("outputjobs").innerHTML = outputjobs;
@@ -62,7 +62,6 @@ function getJobs() {
 
 // Funktion som tar bort ett jobb med ID:t som skickas från radera-knappen
 function deleteJob(id) {
-    console.log("Hej " + id);
     // Använder URL:en och lägger till id:t som ska raderas
     fetch(JOBURL + id + "/", {
         method: "DELETE",
@@ -73,5 +72,37 @@ function deleteJob(id) {
         // Uppdaterar jobblistan
         .then((data) => getJobs())
         // Visar felmeddelanden
+        .catch((err) => console.log(err))
+}
+
+// Funktion som uppdaterar ett jobb
+function updateJob() {
+    // Hämtar datat från fälten och lägger i variabler
+    let jobId = document.getElementById("jobId").value;
+    let updateWorkplace = document.getElementById("updateWorkplace").value;
+    let updateTitle = document.getElementById("updateTitle").value;
+    let updateStartdatejob = document.getElementById("updateStartdatejob").value;
+    let updateEnddatejob = document.getElementById("updateEnddatejob").value;
+
+    // Skapar ett JSON-objekt av inmatat data
+    let updateJobJson = JSON.stringify({
+        "workplace": updateWorkplace,
+        "title": updateTitle,
+        "startdate": updateStartdatejob,
+        "enddate": updateEnddatejob
+    });
+    // Skickar JSON-datat till URL:en
+    fetch(JOBURL + "/" + jobId, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: updateJobJson
+    })
+        // Konverterar returnerad respons till JSON
+        .then((res) => res.json())
+        // Hämtar jobben
+        .then((data) => getJobs())
+        // Plockar upp felmeddelanden
         .catch((err) => console.log(err))
 }

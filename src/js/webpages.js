@@ -48,7 +48,7 @@ function getWebpages() {
                     + "<p>" + post.url + "</p>"
                     + "<p>" + post.description + "</p>"
                     // Lägger till en radera-knapp som får ID:t från webbplats-ID:t
-                    + "<button onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera</button></div>";
+                    + "<button onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera #" + post.id + "</button></div>";
             })
             // Lägger in all text i den rätta diven
             document.getElementById("outputwebpages").innerHTML = outputwebpages;
@@ -70,5 +70,36 @@ function deleteWebpage(id) {
         // Uppdaterar webbplatserna
         .then((data) => getWebpages())
         // Visar felmeddelanden
+        .catch((err) => console.log(err))
+}
+
+
+// Funktion som uppdaterar en webbplats
+function updateWebpage() {
+    // Hämtar datat från fälten och lägger i variabler
+    let webpageId = document.getElementById("webpageId").value;
+    let updateWebpagetitle = document.getElementById("updateWebpagetitle").value;
+    let updateWebpageurl = document.getElementById("updateWebpageurl").value;
+    let updateWebpagedescription = document.getElementById("updateWebpagedescription").value;
+
+    // Skapar ett JSON-objekt av inmatat data
+    let updateWebpageJson = JSON.stringify({
+        "title": updateWebpagetitle,
+        "url": updateWebpageurl,
+        "description": updateWebpagedescription
+    });
+    // Skickar JSON-datat till URL:en
+    fetch(WEBPAGEURL + "/" + webpageId, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: updateWebpageJson
+    })
+        // Konverterar returnerad respons till JSON
+        .then((res) => res.json())
+        // Hämtar webbplatserna
+        .then((data) => getWebpages())
+        // Plockar upp felmeddelanden
         .catch((err) => console.log(err))
 }
