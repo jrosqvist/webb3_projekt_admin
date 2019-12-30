@@ -1,14 +1,180 @@
+/* Joakim Rosqvist - Mittuniversitetet - 2019 */
+
+// Hela sidan
 html {
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: 'Amaranth', sans-serif;
 }
-
 body {
-    width:1200px;
-    margin:0 auto;
-    background-color: yellowgreen;
+  background-color: rgb(237, 237, 237);
+}
+// Meny
+nav {
+  height: 50px;
+  background: rgba(55, 55, 55, 0.95);
+  border-bottom: 4px solid #fff;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  h1 {
+    font-family: 'Baloo Bhai', cursive;
+    line-height:50px;
+    font-style: italic;
+    color:rgb(141, 182, 228);
+    float:left;
+    padding-left:20px;
+    font-size:20px;
+  }
+  #mainmenu {
+    float: right;
+  }
+  ul {
+    list-style: none;
+  }
+  li {
+    float: left;
+    padding-right: 20px;
+    line-height: 50px;
+  }
+  a {
+    font-family: 'Baloo Bhai', cursive;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+}
+// Sidinnehåll
+#container {
+  max-width: 960px;
+  margin: 0 auto;
+  margin-top:100px;
+  position: relative;
+}
+// Varje sektion (utbildningar, jobb och skapade webbplatser)
+.box {
+  width:80%;
+  background-color: rgb(16, 16, 16);
+  border-radius: 10px;
+  margin: 5px 10%;
+  h2 {
+    font-family: 'Baloo Bhai', cursive;
+    text-align: center;
+    font-size: 22px;
+    padding: 10px 0;
+    color: white;
+  }
+}
+// Formulären
+form {
+  width: 80%;
+  margin: 1% 5%;
+  padding: 5%;
+}
+input {
+  width: 70%;
+  padding: 10px;
+  margin: 0 15%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: none;
+}
+/* Knappar */
+// Lägg till
+.add-button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin: 20px 25%;
+  background-color: rgb(86, 196, 86);
+  color: white;
+  font-weight: bold;
+}
+.add-button:hover {
+  cursor: pointer;
+  background-color: rgb(40, 155, 40);
+}
+// Uppdatera
+.update-button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin: 5px 25%;
+  background-color: rgb(93, 174, 223);
+  color: white;
+  font-weight: bold;
+}
+.update-button:hover {
+  cursor: pointer;
+  background-color: rgb(167, 167, 167);
+}
+// Ta bort-knappar
+.delete-button {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin: 5px 25%;
+  background-color: rgb(213, 68, 68);
+  color: white;
+  font-weight: bold;
+}
+.delete-button:hover {
+  cursor: pointer;
+  background-color: rgb(167, 167, 167);
 }
 
-.box {
-    float:left;
-    width:33.33333%;
+// Omfattar hela poster vid utskrift
+.box-wrapper {
+  border-bottom: 2px solid rgb(228, 228, 228);
+  float: left;
+  width: 80%;
+  padding: 5%;
+  margin: 1% 5%;
+}
+// Hämtade poster - text-sektionen
+.educationBox,
+.jobBox,
+.webpageBox {
+  float: left;
+  width: 50%;
+}
+// Hämtade poster - knapparna
+.button-box {
+  width: 50%;
+  float: left;
+  button {
+    width: 50%;
+    float: left;
+  }
+}
+// Tar bort float
+.button-box:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+// Tar bort float efter output
+#output:after,
+#outputjobs:after,
+#outputwebpages:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+// Tar bort float för uppdatera-formulären
+#updateEducationForm,
+#updateJobForm,
+#updateWebpageForm {
+  display: none;
+  position: absolute;
+  background-color: black;
+}
+label {
+  color:white;
+  text-align:center;
+  font-weight: bold;
 }

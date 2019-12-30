@@ -1,3 +1,4 @@
+/* Joakim Rosqvist - Mittuniversitetet - 2019 */
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
@@ -23,9 +24,6 @@ function addEducation() {
     // Skickar JSON-datat till URL:en
     fetch(URL, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: eduJson
     })
         // Konverterar returnerad respons till JSON
@@ -44,16 +42,18 @@ function getEducation() {
         // Konverterar till JSON
         .then((res) => res.json())
         .then((data) => {
-            let output = "<h3>Slutförd utbildning</h3>";
+            let output = "";
             // Loopar igenom datat och skriver ut alla poster
             data.forEach(function (post) {
-                output += "<div class = 'courseBox'><p>" + post.hie + "</p>"
-                    + "<p>" + post.name + "</p>"
-                    + "<p>" + post.credits + "</p>"
-                    + "<p>" + post.startdate + "</p>"
-                    + "<p>" + post.enddate + "</p>"
+                output += "<article class = 'box-wrapper'><div class = 'educationBox'><p>Lärosäte: " + post.hie + "</p>"
+                    + "<p>Utblidning: " + post.name + "</p>"
+                    + "<p>Högskolepoäng: " + post.credits + "</p>"
+                    + "<p>Startdatum: " + post.startdate + "</p>"
+                    + "<p>Slutdatum: " + post.enddate + "</p></div>"
                     // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<button onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera # " + post.id + "</button></div>";
+                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera # " + post.id + "</button>"
+                    + '<button class ="update-button" onClick="updateEducationTwo(this.id,\'' + post.hie + '\', \'' + post.name + '\', \'' + post.credits + '\', \'' + post.startdate + '\',  \'' + post.enddate + '\'  )"'
+                    + "id=" + post.id  + ">Uppdatera # " + post.id + "</button></div></article>";
             })
             // Lägger in all text i diven output
             document.getElementById("output").innerHTML = output;
@@ -66,11 +66,9 @@ function getEducation() {
 // Funktion som tar bort en utbildning med ID:t som skickas från radera-knappen
 function deleteEducation(id) {
     // Använder URL:en och lägger till id:t som ska raderas
-    fetch(URL + "/" + id + "/", {
+    fetch(URL + id + "/", {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
+
     })
         // Uppdaterar lisstan med utbildningar
         .then((data) => getEducation())
@@ -99,9 +97,6 @@ function updateEducation() {
     // Skickar JSON-datat till URL:en
     fetch(URL + "/" + educationId, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: updateEduJson
     })
         // Konverterar returnerad respons till JSON
@@ -110,5 +105,17 @@ function updateEducation() {
         .then((data) => getEducation())
         // Plockar upp felmeddelanden
         .catch((err) => console.log(err))
+
+}
+
+// Tar emot all data från posten vars uppdatera-knapp blivit klickad
+function updateEducationTwo(id, hie, name, credits, startdate, enddate) {
+    document.getElementById('updateEducationForm').style.display = "block";
+    document.getElementById("educationId").value = id;
+    document.getElementById("updateHie").value = hie;
+    document.getElementById("updateName").value = name;
+    document.getElementById("updateCredits").value = credits;
+    document.getElementById("updateStartdate").value = startdate;
+    document.getElementById("updateEnddate").value = enddate;
 
 }

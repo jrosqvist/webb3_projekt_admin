@@ -1,3 +1,4 @@
+/* Joakim Rosqvist - Mittuniversitetet - 2019 */
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
@@ -19,9 +20,6 @@ function addWebpage() {
     // Skickar JSON-datat till URL:en
     fetch(WEBPAGEURL, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: webpageJson
     })
         // Konverterar returnerad respons till JSON
@@ -40,15 +38,18 @@ function getWebpages() {
         // Konverterar till JSON
         .then((res) => res.json())
         .then((data) => {
-            let outputwebpages = "<h3>Skapade webbplatser</h3>";
+            let outputwebpages = "";
             // Loopar igenom datat och skriver ut alla kurser
             data.forEach(function (post) {
-                outputwebpages += "<div class = 'webpageBox'><p>"
-                    + "<p>" + post.title + "</p>"
-                    + "<p>" + post.url + "</p>"
-                    + "<p>" + post.description + "</p>"
+                outputwebpages += "<article class = 'box-wrapper'><div class = 'webpageBox'><p>"
+                    + "<p>Titel: " + post.title + "</p>"
+                    + "<p>URL: " + post.url + "</p>"
+                    + "<p>Beskrivning: " + post.description + "</p></div>"
                     // Lägger till en radera-knapp som får ID:t från webbplats-ID:t
-                    + "<button onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera #" + post.id + "</button></div>";
+                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera #"
+                    + post.id + "</button>"
+                    + '<button class ="update-button" onClick="updateWebpageTwo(this.id,\'' + post.title + '\', \'' + post.url + '\',  \'' + post.description + '\'  )"'
+                    + "id=" + post.id + ">Uppdatera # " + post.id + "</button></div></article>";
             })
             // Lägger in all text i den rätta diven
             document.getElementById("outputwebpages").innerHTML = outputwebpages;
@@ -62,10 +63,7 @@ function getWebpages() {
 function deleteWebpage(id) {
     // Använder URL:en och lägger till id:t som ska raderas
     fetch(WEBPAGEURL + id + "/", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
+        method: "DELETE"
     })
         // Uppdaterar webbplatserna
         .then((data) => getWebpages())
@@ -91,9 +89,6 @@ function updateWebpage() {
     // Skickar JSON-datat till URL:en
     fetch(WEBPAGEURL + "/" + webpageId, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: updateWebpageJson
     })
         // Konverterar returnerad respons till JSON
@@ -102,4 +97,13 @@ function updateWebpage() {
         .then((data) => getWebpages())
         // Plockar upp felmeddelanden
         .catch((err) => console.log(err))
+}
+
+// Tar emot all data från posten vars uppdatera-knapp blivit klickad
+function updateWebpageTwo(id, title, url, description) {
+    document.getElementById('updateWebpageForm').style.display = "block";
+    document.getElementById("webpageId").value = id;
+    document.getElementById("updateWebpagetitle").value = title;
+    document.getElementById("updateWebpageurl").value = url;
+    document.getElementById("updateWebpagedescription").value = description;
 }

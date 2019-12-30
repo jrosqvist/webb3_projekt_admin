@@ -1,3 +1,4 @@
+/* Joakim Rosqvist - Mittuniversitetet - 2019 */
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
@@ -21,9 +22,6 @@ function addJob() {
     // Skickar JSON-datat till URL:en
     fetch(JOBURL, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: jobJson
     })
         // Konverterar returnerad respons till JSON
@@ -42,15 +40,18 @@ function getJobs() {
         // Konverterar till JSON
         .then((res) => res.json())
         .then((data) => {
-            let outputjobs = "<h3>Arbetslivserfarenhet</h3>";
+            let outputjobs = "";
             // Loopar igenom datat och skriver ut alla kurser
             data.forEach(function (post) {
-                outputjobs += "<div class = 'jobBox'><p>" + post.workplace + "</p>"
-                    + "<p>" + post.title + "</p>"
-                    + "<p>" + post.startdate + "</p>"
-                    + "<p>" + post.enddate + "</p>"
+                outputjobs += "<article class = 'box-wrapper'><div class = 'jobBox'><p>Arbetsplats: " + post.workplace + "</p>"
+                    + "<p>Arbetstitel: " + post.title + "</p>"
+                    + "<p>Startdatum: " + post.startdate + "</p>"
+                    + "<p>Slutdatum: " + post.enddate + "</p></div>"
                     // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<button onclick ='deleteJob(this.id)' id =" + post.id + ">Radera #" + post.id + "</button></div>";
+                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteJob(this.id)' id =" 
+                    + post.id + ">Radera #" + post.id + "</button>" 
+                    + '<button class ="update-button" onClick="updateJobTwo(this.id,\'' + post.workplace + '\', \'' + post.title + '\', \'' +  post.startdate + '\',  \'' + post.enddate + '\'  )"'
+                    + "id=" + post.id  + ">Uppdatera # " + post.id + "</button></div></article>";
             })
             // Lägger in all text i diven outputjobs
             document.getElementById("outputjobs").innerHTML = outputjobs;
@@ -64,10 +65,7 @@ function getJobs() {
 function deleteJob(id) {
     // Använder URL:en och lägger till id:t som ska raderas
     fetch(JOBURL + id + "/", {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
+        method: "DELETE"
     })
         // Uppdaterar jobblistan
         .then((data) => getJobs())
@@ -94,9 +92,6 @@ function updateJob() {
     // Skickar JSON-datat till URL:en
     fetch(JOBURL + "/" + jobId, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: updateJobJson
     })
         // Konverterar returnerad respons till JSON
@@ -105,4 +100,15 @@ function updateJob() {
         .then((data) => getJobs())
         // Plockar upp felmeddelanden
         .catch((err) => console.log(err))
+}
+
+// Tar emot all data från posten vars uppdatera-knapp blivit klickad
+function updateJobTwo(id, workplace, title, startdate, enddate) {
+    document.getElementById('updateJobForm').style.display = "block";
+    document.getElementById("jobId").value = id;
+    document.getElementById("updateWorkplace").value = workplace;
+    document.getElementById("updateTitle").value = title;
+    document.getElementById("updateStartdatejob").value = startdate;
+    document.getElementById("updateEnddatejob").value = enddate;
+
 }

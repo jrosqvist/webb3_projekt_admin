@@ -6,76 +6,107 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 
 <body>
+    <!--Meny-->
+    <nav>
+        <h1>Admin</h1>
+        <div id="mainmenu">
+            <ul>
+                <li><a href="#education-wrapper">Utbildning</a></li>
+                <li><a href="#job-wrapper">Jobb</a></li>
+                <li><a href="#webpage-wrapper">Webbplatser</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!--Slut på menyn-->
+    <!--Start på container-->
+    <div id="container">
 
-
-    <div id="education-wrapper" class="box">
-        <!--Utbildning-->
-        <form id="addEducationForm">
-            <input type="text" id="hie" placeholder="Lärosäte" required /><br />
-            <input type="text" id="name" placeholder="Namn på kurs/program" required /><br />
-            <input type="text" id="credits" placeholder="Antal högskolepoäng" required /><br />
-            <input type="text" id="startdate" placeholder="Startdatum" required /></br>
-            <input type="text" id="enddate" placeholder="Slutdatum" required /></br>
-            <button onclick="addEducation()">Lägg till utbildning</button>
-        </form>
-        <form id="uppdateEducationForm">
-            <input type="text" id="educationId" placeholder="ID" required /><br />
-            <input type="text" id="updateHie" placeholder="Lärosäte" required /><br />
-            <input type="text" id="updateName" placeholder="Namn på kurs/program" required /><br />
-            <input type="text" id="updateCredits" placeholder="Antal högskolepoäng" required /><br />
-            <input type="text" id="updateStartdate" placeholder="Startdatum" required /></br>
-            <input type="text" id="updateEnddate" placeholder="Slutdatum" required /></br>
-            <button onclick="updateEducation()">Uppdatera utbildning</button>
-        </form>
+        <div id="education-wrapper" class="box">
+            <h2>Utbildning</h2>
+            <!--Utbildning-->
+            <form id="addEducationForm">
+                <input type="text" id="hie" placeholder="Lärosäte" required /><br />
+                <input type="text" id="name" placeholder="Namn på kurs/program" required /><br />
+                <input type="text" id="credits" placeholder="Antal högskolepoäng" required /><br />
+                <input type="text" id="startdate" placeholder="Startdatum" required /><br />
+                <input type="text" id="enddate" placeholder="Slutdatum" required /><br />
+                <button class="add-button" onclick="addEducation()">Lägg till utbildning</button>
+            </form>
+            <form id="updateEducationForm">
+                <label for = "educationId">ID</label>
+                <input type="text" id="educationId" placeholder="ID" required /><br />
+                <label for = "updateHie">Lärosäte</label>
+                <input type="text" id="updateHie" placeholder="Lärosäte" required /><br />
+                <label for = "updateName">Namn på kurs/program</label>
+                <input type="text" id="updateName" placeholder="Namn på kurs/program" required /><br />
+                <label for = "updateCredits">Högskolepoäng</label>
+                <input type="text" id="updateCredits" placeholder="Antal högskolepoäng" required /><br />
+                <label for = "updateStartdate">Startdatum</label>
+                <input type="text" id="updateStartdate" placeholder="Startdatum" required /><br />
+                <label for = "updateEnddate">Slutdatum</label>
+                <input type="text" id="updateEnddate" placeholder="Slutdatum" required /><br />
+                <button class="update-button" onclick="updateEducation()">Uppdatera utbildning</button>
+            </form>
+        </div>
         <!--Utskrifter för utbildning-->
         <div id="output"></div>
-    </div>
 
 
-    <div id="job-wrapper" class="box">
-        <!--Jobb-->
-        <form id="addJobForm">
-            <input type="text" id="workplace" placeholder="Arbetsplats" required /><br />
-            <input type="text" id="title" placeholder="Arbetstitel" required /><br />
-            <input type="text" id="startdatejob" placeholder="Startdatum" required /></br>
-            <input type="text" id="enddatejob" placeholder="Slutdatum" required /></br>
-            <button onclick="addJob()">Lägg till jobb</button>
-        </form>
-        <form id="updateJobForm">
-            <input type="text" id="jobId" placeholder="ID" required /><br />
-            <input type="text" id="updateWorkplace" placeholder="Arbetsplats" required /><br />
-            <input type="text" id="updateTitle" placeholder="Arbetstitel" required /><br />
-            <input type="text" id="updateStartdatejob" placeholder="Startdatum" required /></br>
-            <input type="text" id="updateEnddatejob" placeholder="Slutdatum" required /></br>
-            <button onclick="updateJob()">Uppdatera jobb</button>
-        </form>
+
+        <div id="job-wrapper" class="box">
+            <h2>Jobb</h2>
+            <!--Jobb-->
+            <form id="addJobForm">
+                <input type="text" id="workplace" placeholder="Arbetsplats" required /><br />
+                <input type="text" id="title" placeholder="Arbetstitel" required /><br />
+                <input type="text" id="startdatejob" placeholder="Startdatum" required /><br />
+                <input type="text" id="enddatejob" placeholder="Slutdatum" required /><br />
+                <button class="add-button" onclick="addJob()">Lägg till jobb</button>
+            </form>
+            <form id="updateJobForm">
+                <input type="text" id="jobId" placeholder="ID" required /><br />
+                <input type="text" id="updateWorkplace" placeholder="Arbetsplats" required /><br />
+                <input type="text" id="updateTitle" placeholder="Arbetstitel" required /><br />
+                <input type="text" id="updateStartdatejob" placeholder="Startdatum" required /><br />
+                <input type="text" id="updateEnddatejob" placeholder="Slutdatum" required /><br />
+                <button class="update-button" onclick="updateJob()">Uppdatera jobb</button>
+            </form>
+        </div>
         <!--Utskrifter för jobb-->
         <div id="outputjobs"></div>
-    </div>
 
 
-    <div id="webpage-wrapper" class="box">
-        <!--Skapade webbplatser-->
-        <form id="addWebpageForm">
-            <input type="text" id="webpagetitle" placeholder="Titel" required /><br />
-            <input type="text" id="webpageurl" placeholder="Url till webbplatsen" required /><br />
-            <input type="text" id="webpagedescription" placeholder="Beskrivning av webbplatsen" required /></br>
-            <button onclick="addWebpage()">Lägg till webbplats</button>
-        </form>
-        <form id="updateWebpageForm">
-            <input type="text" id="webpageId" placeholder="ID" required /><br />
-            <input type="text" id="updateWebpagetitle" placeholder="Titel" required /><br />
-            <input type="text" id="updateWebpageurl" placeholder="Url till webbplatsen" required /><br />
-            <input type="text" id="updateWebpagedescription" placeholder="Beskrivning av webbplatsen" required /></br>
-            <button onclick="updateWebpage()">Uppdatera webbplats</button>
-        </form>
+
+        <div id="webpage-wrapper" class="box">
+            <h2>Webbplatser</h2>
+            <!--Skapade webbplatser-->
+            <form id="addWebpageForm">
+                <input type="text" id="webpagetitle" placeholder="Titel" required /><br />
+                <input type="text" id="webpageurl" placeholder="Url till webbplatsen" required /><br />
+                <input type="text" id="webpagedescription" placeholder="Beskrivning av webbplatsen" required /><br />
+                <button class="add-button" onclick="addWebpage()">Lägg till webbplats</button>
+            </form>
+            <form id="updateWebpageForm">
+                <input type="text" id="webpageId" placeholder="ID" required /><br />
+                <input type="text" id="updateWebpagetitle" placeholder="Titel" required /><br />
+                <input type="text" id="updateWebpageurl" placeholder="Url till webbplatsen" required /><br />
+                <input type="text" id="updateWebpagedescription" placeholder="Beskrivning av webbplatsen"
+                    required /><br />
+                <button class="update-button" onclick="updateWebpage()">Uppdatera webbplats</button>
+            </form>
+        </div>
         <!--Utskrifter för skapade webbplatser-->
         <div id="outputwebpages"></div>
+
+
     </div>
+    <!--Slut på container-->
 
     <script src="js/main.js"></script>
 </body>
