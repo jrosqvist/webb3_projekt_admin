@@ -43,15 +43,15 @@ function getJobs() {
             let outputjobs = "";
             // Loopar igenom datat och skriver ut alla kurser
             data.forEach(function (post) {
-                outputjobs += "<article class = 'box-wrapper'><div class = 'jobBox'><p>Arbetsplats: " + post.workplace + "</p>"
-                    + "<p>Arbetstitel: " + post.title + "</p>"
-                    + "<p>Startdatum: " + post.startdate + "</p>"
-                    + "<p>Slutdatum: " + post.enddate + "</p></div>"
+                outputjobs += "<article class = 'box-wrapper'><div class = 'jobBox'><p><span class ='lead-text'>Arbetsplats: </span>" + post.workplace + "</p>"
+                    + "<p><span class ='lead-text'>Arbetstitel: </span>" + post.title + "</p>"
+                    + "<p><span class ='lead-text'>Startdatum: </span>" + post.startdate + "</p>"
+                    + "<p><span class ='lead-text'>Slutdatum: </span>" + post.enddate + "</p></div>"
+                    + '<div class ="button-box"><button class ="update-button" onClick="updateJobTwo(this.id,\'' + post.workplace + '\', \'' + post.title + '\', \'' +  post.startdate + '\',  \'' + post.enddate + '\'  )"'
+                    + "id=" + post.id  + ">Uppdatera # " + post.id + "</button>"
                     // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteJob(this.id)' id =" 
-                    + post.id + ">Radera #" + post.id + "</button>" 
-                    + '<button class ="update-button" onClick="updateJobTwo(this.id,\'' + post.workplace + '\', \'' + post.title + '\', \'' +  post.startdate + '\',  \'' + post.enddate + '\'  )"'
-                    + "id=" + post.id  + ">Uppdatera # " + post.id + "</button></div></article>";
+                    + "<button class ='delete-button' onclick ='deleteJob(this.id)' id =" 
+                    + post.id + ">Radera #" + post.id + "</button></div></article>";
             })
             // Lägger in all text i diven outputjobs
             document.getElementById("outputjobs").innerHTML = outputjobs;

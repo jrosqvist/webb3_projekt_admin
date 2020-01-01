@@ -23,6 +23,7 @@ const sourcemaps = require('gulp-sourcemaps');
 // Skapar ett objekt som plockar alla filer med angivna filformat
 const files = {
     htmlPath: "src/**/*.html",
+    phpPath: "src/**/*.php",
     jsPath: "src/**/*.js",
     cssPath: "src/**/*.css",
     sassPath: "src/scss/*.scss",
@@ -33,6 +34,16 @@ const files = {
 function htmlTask() {
     // Plockar alla html-filer
     return src(files.htmlPath)
+        // Pipe skickar filerna till destinationen "pub"
+        .pipe(dest("pub"))
+        // Kör livereload
+        .pipe(browserSync.stream());
+}
+
+// Task som kopierar alla php-filer
+function phpTask() {
+    // Plockar alla html-filer
+    return src(files.phpPath)
         // Pipe skickar filerna till destinationen "pub"
         .pipe(dest("pub"))
         // Kör livereload
@@ -99,9 +110,9 @@ function watchTask() {
         }
     });
     // Kikar om förändringar gjorts
-    watch([files.htmlPath, files.jsPath, files.sassPath, files.imagesPath],
+    watch([files.htmlPath,files.phpPath, files.jsPath, files.sassPath, files.imagesPath],
         // Kollar efter html-, css- och js-filer samtidigt
-        parallel(htmlTask, jsTask, sassTask, imageTask)
+        parallel(htmlTask, phpTask, jsTask, sassTask, imageTask)
         // Laddar om sidan när någonting förändrats
     ).on('change', browserSync.reload);
 }
@@ -109,7 +120,7 @@ function watchTask() {
 // Gör dessa funktioner publika
 exports.default = series(
     // Dessa tre körs samtidigt
-    parallel(htmlTask, jsTask, sassTask, imageTask),
+    parallel(htmlTask, phpTask, jsTask, sassTask, imageTask),
     // Sedan körs watchTask
     watchTask
 );

@@ -42,14 +42,14 @@ function getWebpages() {
             // Loopar igenom datat och skriver ut alla kurser
             data.forEach(function (post) {
                 outputwebpages += "<article class = 'box-wrapper'><div class = 'webpageBox'><p>"
-                    + "<p>Titel: " + post.title + "</p>"
-                    + "<p>URL: " + post.url + "</p>"
-                    + "<p>Beskrivning: " + post.description + "</p></div>"
+                    + "<p><span class ='lead-text'>Titel: </span>" + post.title + "</p>"
+                    + "<p><span class ='lead-text'>URL: </span>" + post.url + "</p>"
+                    + "<p><span class ='lead-text'>Beskrivning: </span>" + post.description + "</p></div>"
+                    + '<div class ="button-box"><button class ="update-button" onClick="updateWebpageTwo(this.id,\'' + post.title + '\', \'' + post.url + '\',  \'' + post.description + '\'  )"'
+                    + "id=" + post.id + ">Uppdatera # " + post.id + "</button>"
                     // Lägger till en radera-knapp som får ID:t från webbplats-ID:t
-                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera #"
-                    + post.id + "</button>"
-                    + '<button class ="update-button" onClick="updateWebpageTwo(this.id,\'' + post.title + '\', \'' + post.url + '\',  \'' + post.description + '\'  )"'
-                    + "id=" + post.id + ">Uppdatera # " + post.id + "</button></div></article>";
+                    + "<button class ='delete-button' onclick ='deleteWebpage(this.id)' id =" + post.id + ">Radera #"
+                    + post.id + "</button></div></article>";
             })
             // Lägger in all text i den rätta diven
             document.getElementById("outputwebpages").innerHTML = outputwebpages;
@@ -107,3 +107,14 @@ function updateWebpageTwo(id, title, url, description) {
     document.getElementById("updateWebpageurl").value = url;
     document.getElementById("updateWebpagedescription").value = description;
 }
+
+
+/*
+let deleteButton = document.getElementsByClassName("delete-button");
+function showAddedDiv() {
+    document.getElementById('added-div').style.display = "block";
+}
+for (var i = 0; i < deleteButton.length; i++) {
+    deleteButton[i].addEventListener('click', showAddedDiv, false);
+}
+*/

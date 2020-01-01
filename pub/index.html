@@ -7,8 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
+        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -39,19 +43,20 @@
                 <button class="add-button" onclick="addEducation()">Lägg till utbildning</button>
             </form>
             <form id="updateEducationForm">
-                <label for = "educationId">ID</label>
-                <input type="text" id="educationId" placeholder="ID" required /><br />
-                <label for = "updateHie">Lärosäte</label>
+                <label for="educationId">ID</label>
+                <input type="text" id="educationId" placeholder="ID" disabled/><br />
+                <label for="updateHie">Lärosäte</label>
                 <input type="text" id="updateHie" placeholder="Lärosäte" required /><br />
-                <label for = "updateName">Namn på kurs/program</label>
+                <label for="updateName">Namn på kurs/program</label>
                 <input type="text" id="updateName" placeholder="Namn på kurs/program" required /><br />
-                <label for = "updateCredits">Högskolepoäng</label>
+                <label for="updateCredits">Högskolepoäng</label>
                 <input type="text" id="updateCredits" placeholder="Antal högskolepoäng" required /><br />
-                <label for = "updateStartdate">Startdatum</label>
+                <label for="updateStartdate">Startdatum</label>
                 <input type="text" id="updateStartdate" placeholder="Startdatum" required /><br />
-                <label for = "updateEnddate">Slutdatum</label>
+                <label for="updateEnddate">Slutdatum</label>
                 <input type="text" id="updateEnddate" placeholder="Slutdatum" required /><br />
-                <button class="update-button" onclick="updateEducation()">Uppdatera utbildning</button>
+                <button class="form-update-button" onclick="updateEducation()">Uppdatera utbildning</button>
+                <button class ="close-button" onclick="closeUpdateBox()">Stäng</button>
             </form>
         </div>
         <!--Utskrifter för utbildning-->
@@ -70,12 +75,18 @@
                 <button class="add-button" onclick="addJob()">Lägg till jobb</button>
             </form>
             <form id="updateJobForm">
-                <input type="text" id="jobId" placeholder="ID" required /><br />
+                <label for="jobId">ID</label>
+                <input type="text" id="jobId" placeholder="ID" disabled /><br />
+                <label for="updateWorkplace">Arbetsplats</label>
                 <input type="text" id="updateWorkplace" placeholder="Arbetsplats" required /><br />
+                <label for="updateTitle">Arbetstitel</label>
                 <input type="text" id="updateTitle" placeholder="Arbetstitel" required /><br />
+                <label for="updateStartdatejob">Startdatum</label>
                 <input type="text" id="updateStartdatejob" placeholder="Startdatum" required /><br />
+                <label for="updateEnddatejob">Slutdatum</label>
                 <input type="text" id="updateEnddatejob" placeholder="Slutdatum" required /><br />
-                <button class="update-button" onclick="updateJob()">Uppdatera jobb</button>
+                <button class="form-update-button" onclick="updateJob()">Uppdatera jobb</button>
+                <button class ="close-button" onclick="closeUpdateBox()">Stäng</button>
             </form>
         </div>
         <!--Utskrifter för jobb-->
@@ -89,16 +100,20 @@
             <form id="addWebpageForm">
                 <input type="text" id="webpagetitle" placeholder="Titel" required /><br />
                 <input type="text" id="webpageurl" placeholder="Url till webbplatsen" required /><br />
-                <input type="text" id="webpagedescription" placeholder="Beskrivning av webbplatsen" required /><br />
+                <textarea id="webpagedescription" placeholder="Beskrivning av webbplatsen"></textarea>
                 <button class="add-button" onclick="addWebpage()">Lägg till webbplats</button>
             </form>
             <form id="updateWebpageForm">
-                <input type="text" id="webpageId" placeholder="ID" required /><br />
+                <label for="webpageId">ID</label>
+                <input type="text" id="webpageId" placeholder="ID" disabled /><br />
+                <label for="updateWebpagetitle">Titel</label>
                 <input type="text" id="updateWebpagetitle" placeholder="Titel" required /><br />
+                <label for="updateWebpageurl">Url</label>
                 <input type="text" id="updateWebpageurl" placeholder="Url till webbplatsen" required /><br />
-                <input type="text" id="updateWebpagedescription" placeholder="Beskrivning av webbplatsen"
-                    required /><br />
-                <button class="update-button" onclick="updateWebpage()">Uppdatera webbplats</button>
+                <label for="updateWebpagedescription">Beskrivning</label>
+                <textarea id="updateWebpagedescription" placeholder="Beskrivning av webbplatsen"></textarea>
+                <button class="form-update-button" onclick="updateWebpage()">Uppdatera webbplats</button>
+                <button class ="close-button" onclick="closeUpdateBox()">Stäng</button>
             </form>
         </div>
         <!--Utskrifter för skapade webbplatser-->
@@ -108,7 +123,17 @@
     </div>
     <!--Slut på container-->
 
+    <footer>
+        <p>Projekt - Webbutveckling III - Joakim Rosqvist - 2020</p>
+    </footer>
+    <!--
+    <div id="added-div">
+        <h1>TEST</h1>
+    </div>
+    -->
+
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

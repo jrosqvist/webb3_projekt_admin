@@ -4,6 +4,7 @@
 // Lägger webbtjänst-adressen i en variabel
 const URL = "http://localhost/projekt_w3_backend/educationlist.php/education/";
 
+
 // Funktion som lägger till en utbildning från formuläret
 function addEducation() {
     // Hämtar datat från fälten och lägger i variabler
@@ -13,6 +14,11 @@ function addEducation() {
     let startdate = document.getElementById("startdate").value;
     let enddate = document.getElementById("enddate").value;
 
+    // Kollar så att inmatat data för högskolepoäng är ett numrerisk värde
+    if (isNaN(credits)) {
+        alert("Ange ett numreriskt värde för antal högskolepoäng!");
+        return;
+    }
     // Skapar ett JSON-objekt av inmatat data
     let eduJson = JSON.stringify({
         "hie": hie,
@@ -45,15 +51,15 @@ function getEducation() {
             let output = "";
             // Loopar igenom datat och skriver ut alla poster
             data.forEach(function (post) {
-                output += "<article class = 'box-wrapper'><div class = 'educationBox'><p>Lärosäte: " + post.hie + "</p>"
-                    + "<p>Utblidning: " + post.name + "</p>"
-                    + "<p>Högskolepoäng: " + post.credits + "</p>"
-                    + "<p>Startdatum: " + post.startdate + "</p>"
-                    + "<p>Slutdatum: " + post.enddate + "</p></div>"
-                    // Lägger till en radera-knapp som får ID:t från kurs-ID:t
-                    + "<div class ='button-box'><button class ='delete-button' onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera # " + post.id + "</button>"
-                    + '<button class ="update-button" onClick="updateEducationTwo(this.id,\'' + post.hie + '\', \'' + post.name + '\', \'' + post.credits + '\', \'' + post.startdate + '\',  \'' + post.enddate + '\'  )"'
-                    + "id=" + post.id  + ">Uppdatera # " + post.id + "</button></div></article>";
+                output += "<article class = 'box-wrapper'><div class = 'educationBox'><p><span class ='lead-text'>Lärosäte: </span>" + post.hie + "</p>"
+                    + "<p><span class ='lead-text'>Utblidning: </span>" + post.name + "</p>"
+                    + "<p><span class ='lead-text'>Högskolepoäng: </span>" + post.credits + "</p>"
+                    + "<p><span class ='lead-text'>Startdatum: </span>" + post.startdate + "</p>"
+                    + "<p><span class ='lead-text'>Slutdatum: </span>" + post.enddate + "</p></div>"
+                    + '<div class ="button-box"><button class ="update-button" onClick="updateEducationTwo(this.id,\'' + post.hie + '\', \'' + post.name + '\', \'' + post.credits + '\', \'' + post.startdate + '\',  \'' + post.enddate + '\'  )"'
+                    + "id=" + post.id + ">Uppdatera # " + post.id + "</button>"
+                // Lägger till en radera-knapp som får ID:t från kurs-ID:t
+                + "<button class ='delete-button' onclick ='deleteEducation(this.id)' id =" + post.id + ">Radera # " + post.id + "</button></div></article>";
             })
             // Lägger in all text i diven output
             document.getElementById("output").innerHTML = output;
@@ -117,5 +123,9 @@ function updateEducationTwo(id, hie, name, credits, startdate, enddate) {
     document.getElementById("updateCredits").value = credits;
     document.getElementById("updateStartdate").value = startdate;
     document.getElementById("updateEnddate").value = enddate;
+}
 
+// Stänger uppdateringsfönstret
+function closeUpdateBox() {
+    document.getElementById('updateEducationForm').style.display = "none";
 }

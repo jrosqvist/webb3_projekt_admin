@@ -2,7 +2,7 @@
 
 // Hela sidan
 html {
-  font-family: 'Amaranth', sans-serif;
+  font-family: "Amaranth", sans-serif;
 }
 body {
   background-color: rgb(237, 237, 237);
@@ -10,21 +10,21 @@ body {
 // Meny
 nav {
   height: 50px;
-  background: rgba(55, 55, 55, 0.95);
-  border-bottom: 4px solid #fff;
+  background: rgba(63, 63, 63, 0.95);
   width: 100%;
   overflow: hidden;
   position: fixed;
   top: 0;
   z-index: 999;
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   h1 {
-    font-family: 'Baloo Bhai', cursive;
-    line-height:50px;
+    font-family: "Baloo Bhai", cursive;
+    line-height: 50px;
     font-style: italic;
-    color:rgb(141, 182, 228);
-    float:left;
-    padding-left:20px;
-    font-size:20px;
+    color: rgb(255, 255, 255);
+    float: left;
+    padding-left: 20px;
+    font-size: 20px;
   }
   #mainmenu {
     float: right;
@@ -38,40 +38,46 @@ nav {
     line-height: 50px;
   }
   a {
-    font-family: 'Baloo Bhai', cursive;
+    font-family: "Baloo Bhai", cursive;
     text-decoration: none;
     color: #fff;
     font-weight: bold;
+    &:hover {
+      border-bottom: 2px solid white;
+    }
   }
 }
 // Sidinnehåll
 #container {
   max-width: 960px;
   margin: 0 auto;
-  margin-top:100px;
+  margin-top: 100px;
   position: relative;
 }
 // Varje sektion (utbildningar, jobb och skapade webbplatser)
 .box {
-  width:80%;
-  background-color: rgb(16, 16, 16);
+  width: 80%;
+  background-color: rgb(237, 237, 237);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 10px;
-  margin: 5px 10%;
+  margin: 5% 10% 2.5% 10%;
   h2 {
-    font-family: 'Baloo Bhai', cursive;
+    font-family: "Baloo Bhai", cursive;
     text-align: center;
     font-size: 22px;
     padding: 10px 0;
-    color: white;
+    padding-top: 20px;
+    color: rgb(63, 146, 198);
   }
 }
 // Formulären
 form {
   width: 80%;
   margin: 1% 5%;
-  padding: 5%;
+  padding: 1% 5%;
 }
-input {
+input,
+textarea {
   width: 70%;
   padding: 10px;
   margin: 0 15%;
@@ -79,71 +85,87 @@ input {
   border-radius: 5px;
   border: none;
 }
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
 /* Knappar */
-// Lägg till
-.add-button {
+button {
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
   border: none;
   border-radius: 5px;
   padding: 10px;
-  width: 50%;
-  margin: 20px 25%;
+  font-weight: bold;
+}
+// Lägg till
+.add-button {
+  width: 30%;
+  margin: 20px 35%;
   background-color: rgb(86, 196, 86);
   color: white;
-  font-weight: bold;
 }
 .add-button:hover {
   cursor: pointer;
-  background-color: rgb(40, 155, 40);
+  background-color: rgb(56, 159, 56);
 }
 // Uppdatera
 .update-button {
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  width: 50%;
-  margin: 5px 25%;
+  padding: 10px 5px;
+  width: 20%;
+  margin: 5px 30%;
   background-color: rgb(93, 174, 223);
   color: white;
-  font-weight: bold;
 }
 .update-button:hover {
   cursor: pointer;
-  background-color: rgb(167, 167, 167);
+  background-color: rgb(63, 146, 198);
 }
 // Ta bort-knappar
 .delete-button {
-  border: none;
-  border-radius: 5px;
-  padding: 10px;
-  width: 50%;
-  margin: 5px 25%;
+  padding: 10px 5px;
+  width: 40%;
+  margin: 5px 30%;
   background-color: rgb(213, 68, 68);
   color: white;
-  font-weight: bold;
 }
 .delete-button:hover {
   cursor: pointer;
-  background-color: rgb(167, 167, 167);
+  background-color: rgb(194, 48, 48);
 }
 
 // Omfattar hela poster vid utskrift
 .box-wrapper {
-  border-bottom: 2px solid rgb(228, 228, 228);
+  //border-bottom: 2px solid rgb(228, 228, 228);
   float: left;
   width: 80%;
   padding: 5%;
-  margin: 1% 5%;
+  margin: 0 5%;
+  border-radius: 5px;
+  p {
+    margin-bottom: 7.5px;
+  }
+  .lead-text {
+    font-weight: bold;
+    font-size: 110%;
+    color: rgb(63, 146, 198);
+  }
+}
+.box-wrapper:nth-child(odd) {
+  background-color: rgb(250, 250, 250);
+}
+.box-wrapper:nth-child(even) {
+  background-color: rgb(234, 242, 244);
 }
 // Hämtade poster - text-sektionen
 .educationBox,
 .jobBox,
 .webpageBox {
   float: left;
-  width: 50%;
+  width: 60%;
 }
 // Hämtade poster - knapparna
 .button-box {
-  width: 50%;
+  width: 40%;
   float: left;
   button {
     width: 50%;
@@ -170,11 +192,158 @@ input {
 #updateJobForm,
 #updateWebpageForm {
   display: none;
-  position: absolute;
-  background-color: black;
+  position: fixed;
+  background-color: rgb(93, 174, 223);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 10px;
+  padding: 50px;
+  width: 100vh;
+  top: 50px;
+  z-index: 9999;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  input {
+    margin-top: 5px;
+    margin-bottom: 15px;
+  }
 }
 label {
-  color:white;
-  text-align:center;
+  color: white;
   font-weight: bold;
+  width: 70%;
+  margin: 0 15% 0 15%;
+}
+// Uppdateraknappen i uppdatera-formuläret
+// Uppdatera
+.form-update-button {
+  padding: 10px 5px;
+  width: 20%;
+  margin-left: 30%;
+  margin-top: 10px;
+  background-color: rgb(86, 196, 86);
+  color: white;
+  float: left;
+}
+.form-update-button:hover {
+  cursor: pointer;
+  background-color: rgb(56, 159, 56);
+}
+// Ta bort-knappar
+.close-button {
+  padding: 10px 5px;
+  width: 20%;
+  margin-right: 15%;
+  margin-left: 5%;
+  margin-top: 10px;
+  background-color: rgb(245, 245, 245);
+  color: black;
+  float: left;
+}
+.close-button:hover {
+  cursor: pointer;
+  background-color: rgb(222, 222, 222);
+}
+
+footer {
+  height: 100px;
+  background-color: rgb(172, 172, 172);
+  margin-top: 50px;
+  p {
+    color: white;
+    line-height: 100px;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+/*
+#added-div {
+  height:100px;
+  background-color: orange;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  display:none;
+}
+*/
+
+// Media queries
+@media (max-width: 800px) {
+  .box {
+    width: 95%;
+    margin: 5% 2.5% 2.5% 2.5%;
+  }
+  input,
+  textarea {
+    width: 80%;
+    margin: 0 10%;
+    margin-bottom: 10px;
+  }
+  .add-button {
+    width: 50%;
+    margin: 20px 25%;
+  }
+  .educationBox,
+  .jobBox,
+  .webpageBox {
+    float: none;
+    width: 100%;
+  }
+  // Hämtade poster - knapparna
+  .button-box {
+    width: 100%;
+    float: none;
+    margin-top: 20px;
+    button {
+      width: 30%;
+      float: left;
+    }
+  }
+  .update-button {
+    padding: 10px 5px;
+    width: 30%;
+    margin: 5px 70% 5px 0;
+  }
+  // Ta bort-knappar
+  .delete-button {
+    padding: 10px 5px;
+    width: 30%;
+    margin: 5px 70% 5px 0;
+  }
+  #updateEducationForm,
+  #updateJobForm,
+  #updateWebpageForm {
+    padding: 50px;
+    width: 80%;
+    top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    input, textarea {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      width:95%;
+      margin:2.5% 0;
+    }
+  }
+  label {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+  }
+  .form-update-button {
+    width: 30%;
+    margin-left: 10%;
+    float: left;
+  }
+  // Ta bort-knappar
+  .close-button {
+    width: 30%;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
 }
