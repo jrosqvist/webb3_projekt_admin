@@ -2,7 +2,7 @@
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
-const URL = "http://localhost/projekt_w3_backend/educationlist.php/education/";
+const URL = "https://studenter.miun.se/~joro1803/dt173g/projekt/backend/educationlist.php/education/";
 
 
 // Funktion som lägger till en utbildning från formuläret

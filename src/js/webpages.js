@@ -2,7 +2,7 @@
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
-const WEBPAGEURL = "http://localhost/projekt_w3_backend/webpagelist.php/webpages/";
+const WEBPAGEURL = "https://studenter.miun.se/~joro1803/dt173g/projekt/backend/webpagelist.php/webpages/";
 
 // Funktion som lägger till en webbplats från formuläret
 function addWebpage() {

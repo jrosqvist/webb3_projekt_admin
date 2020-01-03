@@ -24,6 +24,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const files = {
     htmlPath: "src/**/*.html",
     phpPath: "src/**/*.php",
+    phpIncludesPath: "src/includes/**",
     jsPath: "src/**/*.js",
     cssPath: "src/**/*.css",
     sassPath: "src/scss/*.scss",
@@ -42,12 +43,21 @@ function htmlTask() {
 
 // Task som kopierar alla php-filer
 function phpTask() {
-    // Plockar alla html-filer
+    // Plockar alla php-filer
     return src(files.phpPath)
         // Pipe skickar filerna till destinationen "pub"
         .pipe(dest("pub"))
         // Kör livereload
         .pipe(browserSync.stream());
+}
+
+function phpIncludesTask() {
+    // Plockar alla php-includes-filer
+    return src(files.phpIncludesPath)
+        // Pipe skickar filerna till destinationen "pub"
+        .pipe(dest("pub/includes"))
+        // Kör livereload
+        .pipe(browserSync.stream())
 }
 
 // Task som konkatenerar och minifierar js-filer
@@ -110,9 +120,9 @@ function watchTask() {
         }
     });
     // Kikar om förändringar gjorts
-    watch([files.htmlPath,files.phpPath, files.jsPath, files.sassPath, files.imagesPath],
+    watch([files.htmlPath, files.phpPath, files.phpIncludesPath, files.jsPath, files.sassPath, files.imagesPath],
         // Kollar efter html-, css- och js-filer samtidigt
-        parallel(htmlTask, phpTask, jsTask, sassTask, imageTask)
+        parallel(htmlTask, phpTask, phpIncludesTask, jsTask, sassTask, imageTask)
         // Laddar om sidan när någonting förändrats
     ).on('change', browserSync.reload);
 }
@@ -120,7 +130,7 @@ function watchTask() {
 // Gör dessa funktioner publika
 exports.default = series(
     // Dessa tre körs samtidigt
-    parallel(htmlTask, phpTask, jsTask, sassTask, imageTask),
+    parallel(htmlTask, phpTask, phpIncludesTask, jsTask, sassTask, imageTask),
     // Sedan körs watchTask
     watchTask
 );

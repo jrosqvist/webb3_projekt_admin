@@ -1,3 +1,24 @@
+<?php
+
+include("includes/config.php");
+
+//Kontrollerar om användaren är inloggad
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+}
+
+// Skapar ny instans av Login
+$user = new User;
+
+// Logga ut
+if (isset($_POST['logout'])) {
+    $username = $_SESSION['username'];
+    $user->logOutUser($username);
+    header("location:login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 
@@ -7,12 +28,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--jQuery-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.js"
-        integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -24,6 +43,11 @@
                 <li><a href="#education-wrapper">Utbildning</a></li>
                 <li><a href="#job-wrapper">Jobb</a></li>
                 <li><a href="#webpage-wrapper">Webbplatser</a></li>
+                <li>
+                    <form action="" method="POST">
+                        <input type="submit" value="Logga ut" name="logout"><br>
+                    </form>
+                </li>
             </ul>
         </div>
     </nav>
@@ -146,3 +170,9 @@
 </body>
 
 </html>
+
+<?php
+
+
+
+?>

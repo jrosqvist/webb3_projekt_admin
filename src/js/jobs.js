@@ -2,7 +2,7 @@
 "use strict";
 
 // Lägger webbtjänst-adressen i en variabel
-const JOBURL = "http://localhost/projekt_w3_backend/joblist.php/jobs/";
+const JOBURL = "https://studenter.miun.se/~joro1803/dt173g/projekt/backend/joblist.php/jobs/";
 
 // Funktion som lägger till ett jobb från formuläret
 function addJob() {
