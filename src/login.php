@@ -28,7 +28,7 @@ if (isset($_POST['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Lobster|Baloo+Bhai&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
@@ -36,12 +36,13 @@ if (isset($_POST['username'])) {
 
 <body>
     <!--Meny-->
-    <nav>
-        <h1>Admin</h1>
-        <div id="mainmenu">
-
+    <header id="mainheader">
+        <div id="logo-container">
+            <a href="#">
+                <h2>Admin</h2>
+            </a>
         </div>
-    </nav>
+    </header>
     <!--Slut på menyn-->
     <!--Start på container-->
     <div id="container">
@@ -51,7 +52,7 @@ if (isset($_POST['username'])) {
             <form action="login.php" id="loginForm" method="POST">
                 <input type="text" name="username" placeholder="Användarnamn" /><br />
                 <input type="password" name="password" placeholder="Lösenord" /><br />
-                <input type="submit" id ="login-button" value="Logga in"><br>
+                <input type="submit" id="login-button" value="Logga in"><br>
                 <?php
                 // Kollar om felmeddeande är genererat, isf - skriv ut den
                 if (isset($error) && !empty($error)) {
