@@ -51,7 +51,7 @@ if (isset($_POST['username'])) {
             <form action="login.php" id="loginForm" method="POST">
                 <input type="text" name="username" placeholder="Användarnamn" /><br />
                 <input type="password" name="password" placeholder="Lösenord" /><br />
-                <input type="submit" value="Logga in"><br>
+                <input type="submit" id ="login-button" value="Logga in"><br>
                 <?php
                 // Kollar om felmeddeande är genererat, isf - skriv ut den
                 if (isset($error) && !empty($error)) {
@@ -66,7 +66,7 @@ if (isset($_POST['username'])) {
     </div>
     <!--Slut på container-->
 
-    <script src="js/main.js"></script>
+    <!--<script src="js/main.js"></script>-->
 
 </body>
 

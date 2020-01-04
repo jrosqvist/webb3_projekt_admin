@@ -28,30 +28,43 @@ if (isset($_POST['logout'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Google Fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Baloo+Bhai&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amaranth|Archivo+Black|Lobster|Baloo+Bhai&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script>
 </head>
 
 <body>
+
     <!--Meny-->
-    <nav>
-        <h1>Admin</h1>
-        <div id="mainmenu">
+    <header id="mainheader">
+        <div id="logo-container">
+            <a href="#">
+                <h2>Admin</h2>
+            </a>
+        </div>
+        <div id="mobile-container">
+            <div id="mobile-menu">
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div id="main-nav">
             <ul>
                 <li><a href="#education-wrapper">Utbildning</a></li>
                 <li><a href="#job-wrapper">Jobb</a></li>
                 <li><a href="#webpage-wrapper">Webbplatser</a></li>
                 <li>
                     <form action="" method="POST">
-                        <input type="submit" value="Logga ut" name="logout"><br>
+                        <input type="submit" id="logout-button" value="Logga ut" name="logout"><br>
                     </form>
                 </li>
             </ul>
         </div>
-    </nav>
+    </header>
     <!--Slut på menyn-->
+
     <!--Start på container-->
     <div id="container">
 
